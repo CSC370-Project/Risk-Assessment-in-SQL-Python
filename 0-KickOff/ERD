@@ -1,0 +1,26 @@
+// ERD
+digraph {
+	size="12,9"
+	bgcolor=black
+	node [color=white fillcolor=black fontcolor=white style=filled]
+	edge [color=white]
+	graph [color=black]
+	splines=false
+	U [label=User shape=rectangle]
+	P [label=Portfolio shape=rectangle]
+	A [label=Allocation shape=rectangle]
+	S [label=Stock shape=rectangle]
+	H [label=StockHistory shape=rectangle]
+	{
+		rank=same
+		U
+		P
+		A
+		S
+		H
+	}
+	U -> P [label="1:N"]
+	P -> A [label="1:N"]
+	S -> A [label="N:M"]
+	S -> H [label="1:N"]
+}
