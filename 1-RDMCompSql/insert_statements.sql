@@ -1,3 +1,2 @@
-INSERT INTO stock (StockID, Ticker, Sector, Price, SD, ERet) VALUES (1, 'TSLA', 'Consumer Cyclical', 173.74, 2.408, 3.31);
-INSERT INTO stock (StockID, Ticker, Sector, Price, SD, ERet) VALUES (2, 'AAPL', 'Technology', 186.88, 1.264, 7.23);
-INSERT INTO stock (StockID, Ticker, Sector, Price, SD, ERet) VALUES (3, 'VTI', 'Unknown', 259.99, 0.0, 0.0);
+INSERT INTO stock (StockID, Ticker, Sector, Price, SD, ERet) VALUES (1, 'AAPL', 'Technology', 191.29, 1.264, 7.23);
+INSERT INTO stock (StockID, Ticker, Sector, Price, SD, ERet) VALUES (2, 'MSFT', 'Technology', 414.67, 0.893, 13.26);
