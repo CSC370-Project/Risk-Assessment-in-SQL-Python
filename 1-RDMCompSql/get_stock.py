@@ -12,7 +12,7 @@ def get_stock(ticker, stock_id):
         sector = stock_info.get('sector', 'Unknown')  # Default to 'Unknown' if 'sector' is not available
         price = stock_info.get('regularMarketPreviousClose', 0.0)  # Default to 0.0 if 'regularMarketPreviousClose' is not available
         sd = stock_info.get('beta', 0.0)  # Default to 0.0 if 'beta' is not available
-        eret = stock_info.get('forwardEps', 0.0)  # Default to 0.0 if 'forwardEps' is not available
+        eret = round((stock_info.get('forwardEps', 0.0) / price) * 100, 3)  # Default to 0.0 if 'forwardEps' is not available
         
         return stock_id, symbol, sector, price, sd, eret
     except Exception as e:
