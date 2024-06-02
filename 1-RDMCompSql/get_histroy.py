@@ -46,7 +46,7 @@ def main(tickers=""):
     insert_statements = []
     for data in history_data_list:
         hid, ticker, date, price = data
-        insert_statement = f"INSERT INTO history (HID, Ticker, Date, Price) VALUES ({hid}, '{ticker}', '{date}', {price});"
+        insert_statement = f"INSERT INTO history (historyID, Ticker, Date, Price) VALUES ({hid}, '{ticker}', '{date}', {price});"
         insert_statements.append(insert_statement)
 
     # Combine all insert statements into a single string
