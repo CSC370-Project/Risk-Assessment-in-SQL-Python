@@ -1,0 +1,73 @@
+// ERD2
+digraph {
+	bgcolor=black
+	node [color=white fillcolor=black fontcolor=white style=filled]
+	edge [color=white]
+	graph [nodesep=0.3 ranksep=1]
+	SSN [label=SESSION shape=rectangle]
+	S [label=STOCK shape=rectangle]
+	P [label=PORTFOLIO shape=rectangle]
+	A [label=ALLOCATION shape=rectangle]
+	H [label=HISTORY shape=rectangle]
+	H1 [label=HAS shape=diamond]
+	H2 [label=HAS shape=diamond]
+	H3 [label=HAS shape=diamond]
+	H4 [label=HAS shape=diamond]
+	{
+		rank=same
+		SSN
+		P
+		A
+		H1
+		H3
+	}
+	{
+		rank=same
+		S
+		H
+		H2
+		H4
+	}
+	SSN -> H1 [dir=back]
+	H1 -> P
+	P -> H2 [arrowhead=none]
+	H2 -> S
+	P -> H3 [dir=back]
+	H3 -> A
+	S -> H4 [dir=back]
+	H4 -> H
+	SID [label=<<u>SID</u>> shape=ellipse]
+	SSN -> SID [arrowhead=none]
+	StkID [label=<<u>StkID</u>> shape=ellipse]
+	Ticker [label=Ticker shape=ellipse]
+	Sector [label=Sector shape=ellipse]
+	CurP [label=CurPrice shape=ellipse]
+	Vol [label=Vol shape=ellipse]
+	ER [label=ER shape=ellipse]
+	S -> StkID [arrowhead=none]
+	S -> Ticker [arrowhead=none]
+	S -> Sector [arrowhead=none]
+	S -> CurP [arrowhead=none]
+	S -> Vol [arrowhead=none]
+	S -> ER [arrowhead=none]
+	PID [label=<<u>PID</u>> shape=ellipse]
+	TAmt [label=TAmt shape=ellipse]
+	RT [label=RT shape=ellipse]
+	P -> PID [arrowhead=none]
+	P -> TAmt [arrowhead=none]
+	P -> RT [arrowhead=none]
+	AllocID [label=<<u>AllocID</u>> shape=ellipse]
+	Ticker2 [label=Ticker shape=ellipse]
+	AllocAmt [label=AllocAmt shape=ellipse]
+	A -> AllocID [arrowhead=none]
+	A -> Ticker2 [arrowhead=none]
+	A -> AllocAmt [arrowhead=none]
+	Ticker3 [label=Ticker shape=ellipse]
+	HID [label=<<u>HID</u>> shape=ellipse]
+	Date [label=Date shape=ellipse]
+	HPrice [label=HPrice shape=ellipse]
+	H -> HID [arrowhead=none]
+	H -> Ticker3 [arrowhead=none]
+	H -> Date [arrowhead=none]
+	H -> HPrice [arrowhead=none]
+}
