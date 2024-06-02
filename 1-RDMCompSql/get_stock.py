@@ -43,7 +43,7 @@ def main(tickers = ""):
     insert_statements = []
     for data in stock_data_list:
         stock_id, symbol, sector, price, sd, eret = data
-        insert_statement = f"INSERT INTO stock (StockID, Ticker, Sector, Price, SD, ERet) VALUES ({stock_id}, '{symbol}', '{sector}', {price}, {sd}, {eret});"
+        insert_statement = f"INSERT INTO stocks (StockID, Ticker, Sector, Price, SD, ERet) VALUES ({stock_id}, '{symbol}', '{sector}', {price}, {sd}, {eret});"
         insert_statements.append(insert_statement)
 
     # Combine all insert statements into a single string
