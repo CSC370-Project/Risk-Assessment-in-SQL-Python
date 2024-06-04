@@ -26,7 +26,7 @@ def main(tickers=""):
 
     # Get current date and date one week ago
     end_date = datetime.now()
-    start_date = end_date - timedelta(days=7)
+    start_date = end_date - timedelta(days=365)
 
     # Initialize history_id counter
     history_id = 1
