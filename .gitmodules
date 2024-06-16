@@ -1,3 +1,3 @@
 [submodule "portef"]
 	path = portef
-	url = git@github.com:CSC370-Project/portef.git
+	url = https://github.com/CSC370-Project/portef.git
