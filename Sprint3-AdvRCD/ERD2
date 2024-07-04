@@ -30,12 +30,12 @@ digraph {
 	}
 	SSN -> H1 [dir=back]
 	H1 -> P
-	P -> H2 [arrowhead=none]
-	H2 -> S
+	P -> H2 [dir=back]
+	H2 -> S [arrowhead=none]
 	P -> H3 [dir=back]
 	H3 -> A
 	S -> H4 [dir=back]
-	H4 -> H
+	H4 -> H [arrowhead=none]
 	SID [label=<<u>SID</u>> shape=ellipse]
 	SSN -> SID [arrowhead=none]
 	StkID [label=<<u>StkID</u>> shape=ellipse]

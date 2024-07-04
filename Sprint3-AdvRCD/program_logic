@@ -1,0 +1,19 @@
+// Program Logic
+digraph {
+	bgcolor=black
+	node [color=white fillcolor=black fontcolor=white shape=box style=filled]
+	edge [color=white fontcolor=white]
+	A [label="main()"]
+	B [label="connect_to_database()"]
+	C [label="db_setup(connection, cursor)"]
+	D [label="get_stock(connection, cursor, tickers)"]
+	E [label="calculate_efficient_frontier(cursor, risk_level, total_amount)"]
+	F [label="store_efficient_frontier(connection, cursor, ef_data, total_amount, risk_level)"]
+	G [label="close_connection(connection, cursor)"]
+	A -> B [label=" Connect to DB (1)"]
+	B -> C [label=" Setup DB (2)"]
+	C -> D [label=" Fetch Stock Data (3)"]
+	D -> E [label=" Calculate Efficient Frontier (4)"]
+	E -> F [label=" Store Efficient Frontier (5)"]
+	F -> G [label=" Close DB Connection (6)"]
+}
