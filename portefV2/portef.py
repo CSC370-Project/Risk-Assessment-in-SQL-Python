@@ -2,34 +2,39 @@
 
 from connect import connect_to_database, close_connection
 from db_setup import db_setup
-from get_sh import get_stock
+from get_sh import get_stock, fetch_data
+from ef import calculate_efficient_frontier, store_allocation
+
 
 def main():
-    """
-    Main function to connect to the database, set up schema, and fetch stock data.
-    """
-    # Establish a connection to the database
     connection, cursor = connect_to_database()
     if connection:
         try:
-            # Prompt the user for stock ticker symbols
             tickers_input = input("Enter the stock ticker symbols (separated by commas): ").strip()
             if not tickers_input:
                 raise ValueError("Ticker symbols input cannot be empty.")
-            tickers = tickers_input.split(',')
-
-            # Set up the database schema
+            tickers = [ticker.strip() for ticker in tickers_input.split(',')]
+            
             db_setup(connection, cursor)
-            # Fetch and store stock data
             get_stock(connection, cursor, tickers)
 
-        except ValueError as ve:
-            # Handle input errors
-            print(f"Input error: {ve}")
+            # Added:
+            df = fetch_data(connection)
+            # print(df) IN ORDER OF INPUT
 
+            results, weights_record, df = calculate_efficient_frontier(df)
+            store_allocation(connection, cursor, weights_record, results, df)
+            
+            print("Program executed successfully.")
+        except ValueError as ve:
+            print(f"Input error: {ve}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
         finally:
-            # Close the database connection
             close_connection(connection, cursor)
+    else:
+        print("Failed to connect to the database. Exiting program.")
+
 
 if __name__ == "__main__":
     main()

@@ -1,15 +1,8 @@
 import mysql.connector
 from mysql.connector import Error
 
+
 def db_setup(connection, cursor):
-    """
-    Set up the database schema by executing SQL statements within a transaction.
-    
-    Parameters:
-    connection (MySQLConnection): MySQL connection object.
-    cursor (MySQLCursor): MySQL cursor object to execute SQL queries.
-    """
-    # List of SQL statements to create the database schema
     sql_statements = [
         "DROP TABLE IF EXISTS `PortfolioHasAllocation`;",
         "DROP TABLE IF EXISTS `PortfolioHasStock`;",
@@ -23,7 +16,8 @@ def db_setup(connection, cursor):
         "DROP TABLE IF EXISTS `History`;",
         "CREATE TABLE `Session` (`SessionID` INT PRIMARY KEY);",
         "CREATE TABLE `Portfolio` (`PortfolioID` INT PRIMARY KEY, `TotalAmt` FLOAT, `Risk` VARCHAR(64));",
-        "CREATE TABLE `Allocation` (`AllocID` INT PRIMARY KEY, `Ticker` VARCHAR(10), `Amount` FLOAT);",
+        # "CREATE TABLE `Allocation` (`AllocID` INT PRIMARY KEY, `Ticker` VARCHAR(10), `Amount` FLOAT);",
+        "CREATE TABLE `Allocation` (`AllocID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY, `Ticker` VARCHAR(10), `Amount` FLOAT);",
         "CREATE TABLE `Stocks` (`StockID` INT PRIMARY KEY, `Ticker` VARCHAR(10), `Sector` VARCHAR(64), `Price` FLOAT, `SD` FLOAT, `ERet` FLOAT);",
         "CREATE TABLE `History` (`HistoryID` INT PRIMARY KEY, `Ticker` VARCHAR(10), `Date` VARCHAR(10), `Price` FLOAT);",
         "CREATE TABLE `PortfolioHasStock` (`PortfolioID` INT, `StockID` INT, FOREIGN KEY (`PortfolioID`) REFERENCES `Portfolio`(`PortfolioID`), FOREIGN KEY (`StockID`) REFERENCES `Stocks`(`StockID`), PRIMARY KEY (`PortfolioID`, `StockID`));",
@@ -34,15 +28,12 @@ def db_setup(connection, cursor):
     ]
 
     try:
-        # Start a new transaction
         connection.start_transaction()
-        # Execute each SQL statement
         for sql_statement in sql_statements:
             cursor.execute(sql_statement)
-        # Commit the transaction if all statements execute successfully
         connection.commit()
-        print("SQL script executed successfully.")
+        print("Database schema set up successfully.")
     except Error as e:
-        # Rollback the transaction in case of an error
         connection.rollback()
-        print(f"Error executing SQL script: {e}")
+        print(f"Error setting up database schema: {e}")
+        raise

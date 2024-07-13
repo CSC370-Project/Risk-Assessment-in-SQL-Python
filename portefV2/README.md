@@ -6,11 +6,13 @@ Portfolio optimization tool
 - `python3+`
 - `mysql-connector-python`
 - `yfinance`
+- `scipy`
+- `pandas`
 
 ### Installation
 1. **Install Python dependencies**:
     ```sh
-    pip install mysql-connector-python yfinance
+    pip install mysql-connector-python yfinance scipy pandas
     ```
 
 ### Setup
