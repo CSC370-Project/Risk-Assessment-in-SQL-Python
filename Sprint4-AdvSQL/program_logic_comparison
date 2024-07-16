@@ -1,0 +1,46 @@
+// Program Logic Comparison
+digraph {
+	bgcolor=black
+	node [color=white fillcolor=black fontcolor=white shape=box style=filled]
+	edge [color=white fontcolor=white]
+	subgraph cluster_sprint3 {
+		color=white label="Sprint 3"
+		A [label="main()"]
+		B [label="connect_to_database()"]
+		C [label="db_setup(connection, cursor)"]
+		D [label="get_stock(connection, cursor, tickers)"]
+		E [label="calculate_efficient_frontier(cursor, risk_level, total_amount)"]
+		F [label="store_efficient_frontier(connection, cursor, ef_data, total_amount, risk_level)"]
+		G [label="close_connection(connection, cursor)"]
+		A -> B [label=" Connect to DB (1)"]
+		B -> C [label=" Setup DB (2)"]
+		C -> D [label=" Fetch Stock Data (3)"]
+		D -> E [label=" Calculate Efficient Frontier (4)"]
+		E -> F [label=" Store Efficient Frontier (5)"]
+		F -> G [label=" Close DB Connection (6)"]
+	}
+	subgraph cluster_sprint4 {
+		color=white label="Sprint 4"
+		Aa [label="main()"]
+		Bb [label="connect_to_database()"]
+		Cc [label="create_session_tables(connection, cursor, session_id)"]
+		Dd [label="get_stock(connection, cursor, tickers, session_id)"]
+		Ee [label="fetch_data(connection, session_id)"]
+		Ff [label="calculate_efficient_frontier(data)"]
+		Gg [label="store_allocation(connection, cursor, weights_record, results, df, session_id)"]
+		Hh [label="fetch_allocation_data(connection, session_id)"]
+		Ii [label="print_allocation_data(allocation_df, output_file)"]
+		Jj [label="cleanup_session_tables(connection, cursor, session_id)"]
+		Kk [label="close_connection(connection, cursor)"]
+		Aa -> Bb [label=" Connect to DB (1)"]
+		Bb -> Cc [label=" Setup Session Tables (2)"]
+		Cc -> Dd [label=" Fetch Stock Data (3)"]
+		Dd -> Ee [label=" Fetch Data (4)"]
+		Ee -> Ff [label=" Calculate Efficient Frontier (5)"]
+		Ff -> Gg [label=" Store Allocation (6)"]
+		Gg -> Hh [label=" Fetch Allocation Data (7)"]
+		Hh -> Ii [label=" Print Allocation Data (8)"]
+		Ii -> Jj [label=" Cleanup Session Tables (9)"]
+		Jj -> Kk [label=" Close DB Connection (10)"]
+	}
+}
