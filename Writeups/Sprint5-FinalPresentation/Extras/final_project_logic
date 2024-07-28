@@ -1,0 +1,31 @@
+// Final Project Logic
+digraph {
+	bgcolor=black
+	node [color=white fillcolor=black fontcolor=white shape=box style=filled]
+	edge [color=white fontcolor=white]
+	subgraph cluster_finalProject {
+		color=white label="Final Project"
+		A [label="main()"]
+		B [label="connect_to_database()"]
+		C [label="create_session_tables(connection, cursor, session_id)"]
+		D [label="get_valid_tickers()"]
+		E [label="get_investment_amount()"]
+		F [label="get_stock(connection, cursor, valid_tickers, session_id)"]
+		G [label="fetch_data(connection, session_id)"]
+		H [label="calculate_efficient_frontier(data)"]
+		I [label="store_allocation(connection, cursor, weights_record, results, df, session_id)"]
+		J [label="process_allocation_data(connection, session_id, investment_amount)"]
+		K [label="cleanup_and_close(connection, cursor, session_id)"]
+		A -> B [label="Connect to DB (1)"]
+		B -> C [label="Setup Session Tables (2)"]
+		A -> D [label="Get Valid Tickers (3)"]
+		A -> E [label="Get Investment Amount (4)"]
+		D -> F [label="Fetch Stock Data (5)"]
+		F -> G [label="Fetch Data (6)"]
+		G -> H [label="Calculate Efficient Frontier (7)"]
+		H -> I [label="Store Allocation (8)"]
+		E -> J [label="Process Allocation (9)"]
+		I -> J [label="Use Stored Allocation (10)"]
+		J -> K [label="Cleanup and Close (11)"]
+	}
+}
