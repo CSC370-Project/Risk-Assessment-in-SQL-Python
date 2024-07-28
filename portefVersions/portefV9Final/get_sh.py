@@ -393,23 +393,6 @@ def get_stock(connection, cursor, tickers, session_id):
         connection.rollback()
         print(f"Error fetching or processing stock data: {e}")
 
-# def fetch_data(connection, session_id):
-#     table_prefix = f"session_{session_id}_"
-#     query = f"""
-#     SELECT s.Ticker, h.Date, h.Price
-#     FROM `{table_prefix}Stocks` s
-#     JOIN `{table_prefix}History` h ON s.Ticker = h.Ticker
-#     ORDER BY s.Ticker, h.Date
-#     """
-    
-#     try:
-#         df = pd.read_sql_query(query, connection)
-#         return df
-#     except Error as e:
-#         print(f"Error fetching data: {e}")
-#         raise
-
-
 def fetch_data(connection, session_id):
     """
     Fetch processed stock data from the database.
@@ -428,11 +411,9 @@ def fetch_data(connection, session_id):
     """
     
     try:
-        # Suppress the specific UserWarning
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=UserWarning)
             
-            # Use a more efficient method to fetch data
             with connection.cursor(dictionary=True) as cursor:
                 cursor.execute(query)
                 result = cursor.fetchall()
